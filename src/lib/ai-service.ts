@@ -37,7 +37,7 @@ export async function analyzeContent(paragraphs: string[]): Promise<AnalyzedPost
             -   Provide a **"Context-Aware Explanation"** in **Korean**.
             -   Explain *what* the concept is and *why* it is relevant in this specific context.
             -   Example: If the text mentions "Yield Curve Control", do not just say "It is controlling yields." Explain that it's a central bank policy to cap interest rates and why it matters here.
-            -   If a paragraph is simple, conversational, or self-explanatory, return `null` for the explanation. Do not force an explanation.
+            -   If a paragraph is simple, conversational, or self-explanatory, return 'null' for the explanation. Do not force an explanation.
         4.  **Keywords**: Identify specific technical terms within the paragraph and define them academically.
 
         **Input Text:**
