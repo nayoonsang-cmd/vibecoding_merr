@@ -19,7 +19,7 @@ export interface AnalyzedPost {
 const genAI = new GoogleGenerativeAI(process.env.AI_API_KEY || '');
 
 export async function analyzeContent(paragraphs: string[]): Promise<AnalyzedPost> {
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
     // Filter out very short paragraphs that are likely just formatting or noise
     const validParagraphs = paragraphs.filter(p => p.length > 20);
