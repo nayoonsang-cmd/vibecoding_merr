@@ -31,11 +31,13 @@ export async function analyzeContent(paragraphs: string[]): Promise<AnalyzedPost
         **Instructions:**
         1.  **Analyze**: Read the entire text to understand the context.
         2.  **Summary**: Provide a concise 3-sentence summary of the entire post.
-        3.  **Paragraph-by-Paragraph Analysis**: For each paragraph provided in the input, if it contains complex economic, financial, or technical concepts (e.g., "Yield Curve Control", "Stagflation", "Quantum Computing"), provide a "Context-Aware Explanation".
-            -   The explanation must be in **Korean**.
-            -   It should explain *why* this concept matters in the context of this specific post.
-            -   Do NOT explain simple terms. Focus on high-level concepts.
-            -   If a paragraph is simple or conversational, do NOT provide an explanation.
+        3.  **Paragraph-by-Paragraph Analysis**: For each paragraph provided in the input, your goal is to **enhance understanding**, NOT to summarize.
+            -   **DO NOT SUMMARIZE** the paragraph. The user will read the original text.
+            -   Identify **concepts, terms, or context** mentioned in the text that might be difficult for a general reader to understand fully without background knowledge.
+            -   Provide a **"Context-Aware Explanation"** in **Korean**.
+            -   Explain *what* the concept is and *why* it is relevant in this specific context.
+            -   Example: If the text mentions "Yield Curve Control", do not just say "It is controlling yields." Explain that it's a central bank policy to cap interest rates and why it matters here.
+            -   If a paragraph is simple, conversational, or self-explanatory, return `null` for the explanation. Do not force an explanation.
         4.  **Keywords**: Identify specific technical terms within the paragraph and define them academically.
 
         **Input Text:**

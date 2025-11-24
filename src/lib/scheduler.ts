@@ -83,10 +83,9 @@ export async function runDailyCheck() {
 
     const analyzedPosts = [];
 
-    // Process only the latest post to avoid spamming/overloading API in dev
-    // In production, we might want to process all new posts.
-    // For now, let's process up to 3 to be safe.
-    const postsToProcess = newPosts.slice(0, 1);
+    // Process up to 3 new posts to handle multiple posts uploaded within 24 hours
+    // This balances between catching all recent posts and managing API costs
+    const postsToProcess = newPosts.slice(0, 3);
 
     for (const post of postsToProcess) {
         console.log(`Processing: ${post.title}`);

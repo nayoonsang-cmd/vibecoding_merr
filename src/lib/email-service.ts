@@ -13,6 +13,9 @@ const transporter = nodemailer.createTransport({
 export async function sendDigestEmail(to: string, posts: { post: any, analysis: AnalyzedPost }[]) {
   if (!posts.length) return;
 
+  // Support multiple recipients separated by commas
+  const recipients = to.split(',').map(email => email.trim()).filter(email => email);
+
   const htmlContent = `
     <h1>Daily Blog Digest</h1>
     <p>Here are the latest updates from the blog:</p>
@@ -42,12 +45,12 @@ export async function sendDigestEmail(to: string, posts: { post: any, analysis: 
   try {
     const info = await transporter.sendMail({
       from: '"Blog AI Digest" <noreply@example.com>',
-      to,
+      to: recipients.join(', '), // Send to all recipients
       subject: `Daily Blog Digest - ${new Date().toLocaleDateString()}`,
       html: htmlContent,
     });
 
-    console.log('Message sent: %s', info.messageId);
+    console.log('Message sent to %d recipients: %s', recipients.length, info.messageId);
   } catch (error) {
     console.error('Error sending email:', error);
   }
